@@ -1,7 +1,6 @@
 #include "Menus.h"
-#include "UtilityMethods.h"
 
-char Menus::mainMenuDisplay() {
+char Menus::chooseLoginMenuOption() {
     char choice;
 
     system("cls");
@@ -17,7 +16,7 @@ char Menus::mainMenuDisplay() {
     return choice;
 }
 
-char Menus::balanceManagerMenuDisplay() {
+char Menus::chooseBalanceMenuOption() {
     char choice;
 
     system("cls");

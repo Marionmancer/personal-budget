@@ -3,13 +3,15 @@
 
 #include <iostream>
 
+#include "UtilityMethods.h"
+
 using namespace std;
 
 class Menus{
 
 public:
-    static char mainMenuDisplay();
-    static char balanceManagerMenuDisplay();
+    static char chooseLoginMenuOption();
+    static char chooseBalanceMenuOption();
 };
 
 #endif

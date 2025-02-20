@@ -7,22 +7,22 @@ using namespace std;
 
 int main()
 {
-    //PersonalBudgetApp personalBudgetApp("users.txt","incomes.txt", "expenses.txt");
+    PersonalBudgetApp personalBudgetApp("users.txt","incomes.txt", "expenses.txt");
     char choice;
 
     while (true)
     {
-        if (/*personalBudgetApp.isUserLoggedIn() == false*/true)
+        if (personalBudgetApp.isUserLoggedIn() == false)
         {
-            choice = Menus::mainMenuDisplay();
+            choice = Menus::chooseLoginMenuOption();
 
             switch (choice)
             {
             case '1':
-                //personalBudgetApp.rejestracjaUzytkownika();
+                personalBudgetApp.userRegistration();
                 break;
             case '2':
-                //personalBudgetApp.logowanieUzytkownika();
+                personalBudgetApp.userLoggingIn();
                 break;
             case '9':
                 exit(0);
@@ -35,30 +35,30 @@ int main()
         }
         else
         {
-            choice = Menus::balanceManagerMenuDisplay();
+            choice = Menus::chooseBalanceMenuOption();
 
             switch (choice)
             {
             case '1':
-                //personalBudgetApp.dodajAdresata();
+                personalBudgetApp.addIncome();
                 break;
             case '2':
-                //personalBudgetApp.wyszukajAdresatowPoImieniu();
+                personalBudgetApp.addExpense();
                 break;
             case '3':
-                //personalBudgetApp.wyszukajAdresatowPoNazwisku();
+                personalBudgetApp.displayCurrenthMonthBalance();
                 break;
             case '4':
-                //personalBudgetApp.wyswietlWszystkichAdresatow();
+                personalBudgetApp.displayPreviousMonthBalance();
                 break;
             case '5':
-                //personalBudgetApp.usunAdresata();
+                personalBudgetApp.displaySelectedPeriodBalanace();
                 break;
             case '6':
-                //personalBudgetApp.zmianaHaslaZalogowanegoUzytkownika();
+                personalBudgetApp.loggedInUserPasswordChange();
                 break;
             case '7':
-                //personalBudgetApp.wylogujUzytkownika();
+                personalBudgetApp.userLogout();
                 break;
             }
         }
