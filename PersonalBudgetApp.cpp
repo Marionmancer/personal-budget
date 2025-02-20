@@ -1,11 +1,14 @@
 #include "PersonalBudgetApp.h"
 
-void PersonalBudgetApp::userLoggingIn(){
-
+void PersonalBudgetApp::loginUser(){
+    userManager.loginUser();
+    if (userManager.isUserLoggedIn())   {
+        balanceManager = new BalanceManager(userManager.getLoggedInUserId(), INCOMES_FILE_NAME, EXPENSES_FILE_NAME);
+    }
 }
 
 void PersonalBudgetApp::userRegistration(){
-
+    userManager.userRegistration();
 }
 
 void PersonalBudgetApp::loggedInUserPasswordChange(){
@@ -37,5 +40,5 @@ void PersonalBudgetApp::displaySelectedPeriodBalanace(){
 }
 
 bool PersonalBudgetApp::isUserLoggedIn(){
-
+    return userManager.isUserLoggedIn();
 }
