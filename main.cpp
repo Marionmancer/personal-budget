@@ -22,7 +22,7 @@ int main()
                 personalBudgetApp.userRegistration();
                 break;
             case '2':
-                personalBudgetApp.userLoggingIn();
+                personalBudgetApp.loginUser();
                 break;
             case '9':
                 exit(0);
