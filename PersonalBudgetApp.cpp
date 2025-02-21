@@ -12,11 +12,15 @@ void PersonalBudgetApp::userRegistration(){
 }
 
 void PersonalBudgetApp::loggedInUserPasswordChange(){
-
+    if (userManager.getLoggedInUserId()!=0) {
+        userManager.loggedInUserPasswordChange();
+    }
 }
 
 void PersonalBudgetApp::userLogout(){
-
+    userManager.setloggedInUserId(0);
+    delete balanceManager;
+    balanceManager = NULL;
 }
 
 void PersonalBudgetApp::addIncome(){
