@@ -37,7 +37,7 @@ void UserManager::loginUser() {
     }
 }
 
-void UserManager::userRegistration(){
+void UserManager::userRegistration() {
 
     User user = inputNewUserData();
 
@@ -47,6 +47,22 @@ void UserManager::userRegistration(){
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
 }
+
+void UserManager::loggedInUserPasswordChange() {
+    string newPassword = "";
+    cout << "Podaj nowe haslo: ";
+    newPassword = UtilityMethods::readLine();
+
+    for (size_t i = 0; i < users.size(); i++) {
+        if (users[i].userId == loggedInUserId) {
+            users[i].password = newPassword;
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            system("pause");
+        }
+    }
+    //usersFile.zapiszWszystkichUzytkownikowDoPliku(users);
+}
+
 
 User UserManager::inputNewUserData() {
     User user;
@@ -95,8 +111,8 @@ bool UserManager::isLoginAlreadyTaken(string login) {
     return false;
 }
 
-bool UserManager::isUserLoggedIn(){
-    if (loggedInUserId > 0){
+bool UserManager::isUserLoggedIn() {
+    if (loggedInUserId > 0) {
         return true;
     } else
         return false;

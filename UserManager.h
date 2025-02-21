@@ -19,17 +19,23 @@ class UserManager {
     int getNewUserId();
     bool isLoginAlreadyTaken(string login);
 public:
-    UserManager(string usersFileName){
+    UserManager(string usersFileName)/*:usersFile(nazwaPlikuZUzytkownikami)*/{
 
         loggedInUserId = 0;
+        //users = usersFile.wczytajUzytkownikowZPliku();
     }
 
     void loginUser();
     void userRegistration();
     bool isUserLoggedIn();
+    void loggedInUserPasswordChange();
 
     int getLoggedInUserId(){
         return loggedInUserId;
+    }
+
+    void setloggedInUserId (int loggedInUserId){
+        this -> loggedInUserId = loggedInUserId;
     }
 };
 
