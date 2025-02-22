@@ -5,39 +5,6 @@
 
 using namespace std;
 
-int main3(){
-    CMarkup xmlDoc;
-    string userXmlFileName = "users.xml";
-    string newPassword = "Gni";
-    string id = "2";
-
-    bool fileExists = xmlDoc.Load(userXmlFileName);
-    //cout << fileExists << endl;
-
-    if (fileExists){
-        xmlDoc.ResetPos();
-        xmlDoc.FindElem("users");
-        xmlDoc.IntoElem();
-        while (xmlDoc.FindElem("user")){
-            //xmlDoc.IntoElem();
-            //xmlDoc.FindElem("id");
-            xmlDoc.FindChildElem("id");
-            cout << xmlDoc.GetChildData() << endl;
-            if(xmlDoc.GetChildData() == id){
-                //xmlDoc.ResetChildPos();
-                xmlDoc.FindChildElem("password");
-                xmlDoc.SetChildData(newPassword);
-                xmlDoc.Save(userXmlFileName);
-                return 1;
-            }
-            //xmlDoc.ResetMainPos();
-            //xmlDoc.OutOfElem();
-        }
-        cout << "Tutaj sie wywala" << endl;
-    }
-    return 0;
-}
-
 //int main2(){
 //    int lastId = 0;
 //    CMarkup xmlDoc;
