@@ -17,6 +17,7 @@ public:
             :XmlFile(usersFileName){};
 
     void addUserToFile(User user);
+    bool changeUserPasswordInFile(User user);
 
 };
 

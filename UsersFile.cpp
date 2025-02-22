@@ -27,3 +27,30 @@ void UsersFile::addUserToFile(User user){
 
     xmlDoc.Save(userXmlFileName);
 }
+
+bool UsersFile::changeUserPasswordInFile(User user){
+
+    CMarkup xmlDoc;
+    string userXmlFileName = getFileName();
+    string newPassword = user.password;
+    cout << "Pamietaj zmienic sposob wczytywania id przy zmianie hasla!" << endl;
+    string id = to_string(6);//(user.id);
+
+    bool fileExists = xmlDoc.Load(userXmlFileName);
+
+    if (fileExists){
+        xmlDoc.ResetPos();
+        xmlDoc.FindElem("users");
+        xmlDoc.IntoElem();
+        while (xmlDoc.FindElem("user")){
+            xmlDoc.FindChildElem("id");
+            if(xmlDoc.GetChildData() == id){
+                xmlDoc.FindChildElem("password");
+                xmlDoc.SetChildData(newPassword);
+                xmlDoc.Save(userXmlFileName);
+                return true;
+            }
+        }
+    }
+    return false;
+}
