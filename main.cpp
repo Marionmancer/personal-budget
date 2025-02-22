@@ -5,9 +5,59 @@
 
 using namespace std;
 
+int main3(){
+    int lastId = 0;
+    CMarkup xmlDoc;
+    string userXmlFileName = "usesrs.xml";
+
+    bool fileExists = xmlDoc.Load(userXmlFileName);
+
+    if (!fileExists){
+        xmlDoc.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xmlDoc.AddElem("users");
+        cout << "Nie ma takiego pliku. Utworzylem wiec nowy " << endl;
+    }
+
+    xmlDoc.ResetPos();
+    xmlDoc.AddElem("users");
+    cout << "Tutaj sie wywala" << endl;
+    xmlDoc.FindElem("users");
+    /*xmlDoc.AddChildElem("user");
+    cout << "Tutaj sie wywala" << endl;
+    xmlDoc.IntoElem(); // Tutaj jest blad
+    xmlDoc.AddChildElem("id", lastId);
+    xmlDoc.AddChildElem("login", user.login);
+    xmlDoc.AddChildElem("password", user.password);
+    xmlDoc.AddChildElem("name", user.name);
+    xmlDoc.AddChildElem("surname", user.surname);*/
+
+    xmlDoc.Save(userXmlFileName);
+
+    return 0;
+}
+
+int main2(){
+    int lastId = 0;
+    CMarkup xmlDoc;
+
+    if (xmlDoc.Load("users.xml")) {
+        xmlDoc.AddElem("users");
+        xmlDoc.FindElem();
+        xmlDoc.IntoElem();
+        while (xmlDoc.FindElem()){
+            xmlDoc.FindChildElem("id");
+            lastId = atoi(xmlDoc.GetChildData().c_str());
+            cout << "Last id: " << lastId << endl;
+        }
+        xmlDoc.OutOfElem();
+        xmlDoc.Save("users.xml");
+    }
+    return 0;
+}
+
 int main()
 {
-    PersonalBudgetApp personalBudgetApp("users.txt","incomes.txt", "expenses.txt");
+    PersonalBudgetApp personalBudgetApp("users.xml","incomes.xml", "expenses.xml");
     char choice;
 
     while (true)

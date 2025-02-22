@@ -19,7 +19,7 @@ void UserManager::loginUser() {
                 if (users[i].password == password) {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    loggedInUserId = users[i].userId;
+                    loggedInUserId = users[i].id;
                     isLoggedIn = true;
                 }
                 if (isLoggedIn == true) break;
@@ -42,7 +42,7 @@ void UserManager::userRegistration() {
     User user = inputNewUserData();
 
     users.push_back(user);
-    //usersFile.addUserToFile(user);
+    usersFile.addUserToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
@@ -54,7 +54,7 @@ void UserManager::loggedInUserPasswordChange() {
     newPassword = UtilityMethods::readLine();
 
     for (size_t i = 0; i < users.size(); i++) {
-        if (users[i].userId == loggedInUserId) {
+        if (users[i].id == loggedInUserId) {
             users[i].password = newPassword;
             cout << "Haslo zostalo zmienione." << endl << endl;
             system("pause");
@@ -67,7 +67,7 @@ void UserManager::loggedInUserPasswordChange() {
 User UserManager::inputNewUserData() {
     User user;
 
-    user.userId = getNewUserId();
+    user.id = getNewUserId();
 
     string login;
     do {
@@ -98,7 +98,7 @@ int UserManager::getNewUserId() {
     if (users.empty() == true)
         return 1;
     else
-        return users.back().userId + 1;
+        return users.back().id + 1;
 }
 
 bool UserManager::isLoginAlreadyTaken(string login) {
