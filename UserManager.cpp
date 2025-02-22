@@ -56,8 +56,10 @@ void UserManager::loggedInUserPasswordChange() {
     for (size_t i = 0; i < users.size(); i++) {
         if (users[i].id == loggedInUserId) {
             users[i].password = newPassword;
-            cout << "Haslo zostalo zmienione." << endl << endl;
-            system("pause");
+            if (usersFile.changeUserPasswordInFile(users[i])){
+                cout << "Haslo zostalo zmienione." << endl << endl;
+                system("pause");
+            }
         }
     }
     //usersFile.zapiszWszystkichUzytkownikowDoPliku(users);
