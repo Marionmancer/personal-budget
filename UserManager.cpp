@@ -62,7 +62,6 @@ void UserManager::loggedInUserPasswordChange() {
             }
         }
     }
-    //usersFile.zapiszWszystkichUzytkownikowDoPliku(users);
 }
 
 

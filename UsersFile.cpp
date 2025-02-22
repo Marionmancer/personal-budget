@@ -33,8 +33,7 @@ bool UsersFile::changeUserPasswordInFile(User user){
     CMarkup xmlDoc;
     string userXmlFileName = getFileName();
     string newPassword = user.password;
-    cout << "Pamietaj zmienic sposob wczytywania id przy zmianie hasla!" << endl;
-    string id = to_string(6);//(user.id);
+    string id = to_string(user.id);
 
     bool fileExists = xmlDoc.Load(userXmlFileName);
 
@@ -53,4 +52,32 @@ bool UsersFile::changeUserPasswordInFile(User user){
         }
     }
     return false;
+}
+
+vector <User> UsersFile::loadUsersFromFile() {
+    User user;
+    vector <User> users;
+    CMarkup xmlDoc;
+    string userXmlFileName = getFileName();
+    bool fileExists = xmlDoc.Load(userXmlFileName);
+
+    if (fileExists){
+        xmlDoc.ResetPos();
+        xmlDoc.FindElem("users");
+        xmlDoc.IntoElem();
+        while (xmlDoc.FindElem("user")) {
+            xmlDoc.FindChildElem("id");
+            user.id = atoi(xmlDoc.GetChildData().c_str());
+            xmlDoc.FindChildElem("login");
+            user.login = xmlDoc.GetChildData();
+            xmlDoc.FindChildElem("password");
+            user.password = xmlDoc.GetChildData();
+            xmlDoc.FindChildElem("name");
+            user.name = xmlDoc.GetChildData();
+            xmlDoc.FindChildElem("surname");
+            user.surname = xmlDoc.GetChildData();
+            users.push_back(user);
+        }
+    }
+    return users;
 }

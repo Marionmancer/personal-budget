@@ -22,7 +22,7 @@ public:
     UserManager(string usersFileName)
                 :usersFile(usersFileName){
         loggedInUserId = 0;
-        //users = usersFile.wczytajUzytkownikowZPliku();
+        users = usersFile.loadUsersFromFile();
     }
 
     void loginUser();
