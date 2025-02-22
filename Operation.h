@@ -6,7 +6,7 @@
 using namespace std;
 
 struct Operation{
-    int operationId;
+    int id;
     int userId;
     string date;
     string item;

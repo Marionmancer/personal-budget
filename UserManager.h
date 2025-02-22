@@ -19,8 +19,8 @@ class UserManager {
     int getNewUserId();
     bool isLoginAlreadyTaken(string login);
 public:
-    UserManager(string usersFileName)/*:usersFile(nazwaPlikuZUzytkownikami)*/{
-
+    UserManager(string usersFileName)
+                :usersFile(usersFileName){
         loggedInUserId = 0;
         //users = usersFile.wczytajUzytkownikowZPliku();
     }
