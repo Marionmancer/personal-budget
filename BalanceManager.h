@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "OperationsFile.h"
+#include "DateMethods.h"
 
 using namespace std;
 
