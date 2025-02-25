@@ -55,14 +55,29 @@ int DateMethods::calculatePreviousMonthNumber(int currentMonth) {
     return previousMonth;
 }
 
-int DateMethods::checkHowManyDaysMonthHas(struct tm previousMonthLastDayDate){
-    int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+int DateMethods::checkHowManyDaysMonthHas(struct tm month){
+    const int MONTH_CORRECTION = 1;
+    int days[] = {0 ,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-    if (previousMonthLastDayDate.tm_mon == 2 && (isItLeapYear(previousMonthLastDayDate.tm_year))) {
+    if (month.tm_mon + MONTH_CORRECTION == 2 && (isItLeapYear(month.tm_year))) {
         return 29;
     }
 
-    return days[previousMonthLastDayDate.tm_mon];
+    return days[month.tm_mon + MONTH_CORRECTION];
+}
+
+bool DateMethods::validateDate(string date) {
+    regex datePattern(R"(^(2\d{3})-(0[1-9]|1[0-2])-([0-2]\d|3[01])$)");
+    smatch match;
+
+    if (regex_match(date, match, datePattern)) {
+        int year = stoi(match[1]);  // Rok
+        int month = stoi(match[2]); // Miesi¹c
+        int day = stoi(match[3]);   // Dzieñ
+
+        return day <= checkHowManyDaysMonthHas(convertStringToTmStruct(date));
+    }
+    return false;
 }
 
 struct tm DateMethods::getPreviousMonthLastDayDate() {
