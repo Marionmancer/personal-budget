@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <sstream>
 #include <vector>
+#include <regex>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class DateMethods{
     static int checkHowManyDaysMonthHas(struct tm previousMonthLastDayDate);
 
 public:
+    static bool validateDate(string date);
     static string convertTmStructDateToStringDate (struct tm dateToConvert);
     static struct tm convertStringToTmStruct(string strinHoldingFormatedDate);
     static struct tm getCurrentDate();

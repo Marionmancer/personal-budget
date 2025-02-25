@@ -6,21 +6,15 @@
 using namespace std;
 
 //int main2(){
-//    int lastId = 0;
-//    CMarkup xmlDoc;
+//    string dataPoprawna = "2001-01-31";
+//    string dataNiepoprawnaPoprawna = "1999-01-31";
+//    string nieData = "r001-m1-d1";
 //
-//    if (xmlDoc.Load("users.xml")) {
-//        xmlDoc.AddElem("users");
-//        xmlDoc.FindElem();
-//        xmlDoc.IntoElem();
-//        while (xmlDoc.FindElem()){
-//            xmlDoc.FindChildElem("id");
-//            lastId = atoi(xmlDoc.GetChildData().c_str());
-//            cout << "Last id: " << lastId << endl;
-//        }
-//        xmlDoc.OutOfElem();
-//        xmlDoc.Save("users.xml");
-//    }
+//    validateDate(dataPoprawna);
+//    validateDate(dataNiepoprawnaPoprawna);
+//    validateDate(nieData);
+//
+//
 //    return 0;
 //}
 
