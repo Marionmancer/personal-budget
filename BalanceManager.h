@@ -2,7 +2,6 @@
 #define BALANCEMANAGER_H
 
 #include <iostream>
-#include <iomanip>
 
 #include "Operation.h"
 #include "OperationType.h"

@@ -51,7 +51,7 @@ bool OperationsFile::addNewOperationToFile(const Operation &operation){
         xmlDoc.AddChildElem("id", operation.id);
         xmlDoc.AddChildElem("userId", operation.userId);
         xmlDoc.AddChildElem("date", operation.date);
-        xmlDoc.AddChildElem("amount", operation.amount);
+        xmlDoc.AddChildElem("amount", UtilityMethods::floatToStringFixedConvertion(operation.amount));
         xmlDoc.AddChildElem("item", operation.item);
         xmlDoc.ResetPos();
         xmlDoc.Save(operationsXmlFileName);
