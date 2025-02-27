@@ -21,3 +21,18 @@ string UtilityMethods::readLine() {
     getline(cin, input);
     return input;
 }
+
+string UtilityMethods::floatToStringFixedConvertion(float number){
+    ostringstream out;
+    out << fixed << setprecision(2) << number;
+    return out.str();
+}
+
+bool UtilityMethods::validateInput(string &stringInput){
+
+    if (stringInput.empty()) return false;
+    transform(stringInput.begin(), stringInput.end(), stringInput.begin(), ::tolower);
+    stringInput[0] = toupper(stringInput[0]);
+
+    return true;
+}

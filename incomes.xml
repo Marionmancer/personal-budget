@@ -21,4 +21,18 @@
 <amount>55</amount>
 <item>Zaliczka</item>
 </operation>
+<operation>
+<id>4</id>
+<userId>7</userId>
+<date>2025-02-27</date>
+<amount>21</amount>
+<item>Test</item>
+</operation>
+<operation>
+<id>5</id>
+<userId>3</userId>
+<date>2025-02-27</date>
+<amount>28.180000</amount>
+<item>Dodatek wyrownawczy</item>
+</operation>
 </operations>

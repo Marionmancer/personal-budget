@@ -22,8 +22,10 @@ bool UsersFile::addUserToFile(User &user){
         xmlDoc.AddChildElem("id", lastId);
         xmlDoc.AddChildElem("login", user.login);
         xmlDoc.AddChildElem("password", user.password);
-        xmlDoc.AddChildElem("name", user.name);
-        xmlDoc.AddChildElem("surname", user.surname);
+        if (UtilityMethods::validateInput(user.name))
+            xmlDoc.AddChildElem("name", user.name);
+        if (UtilityMethods::validateInput(user.surname))
+            xmlDoc.AddChildElem("surname", user.surname);
         xmlDoc.ResetPos();
 
         xmlDoc.Save(userXmlFileName);

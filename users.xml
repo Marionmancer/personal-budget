@@ -48,4 +48,11 @@
 <name>t55</name>
 <surname>t555</surname>
 </user>
+<user>
+<id>8</id>
+<login>TestSzosty</login>
+<password>t6</password>
+<name>Testowe</name>
+<surname>Nazwisko</surname>
+</user>
 </users>

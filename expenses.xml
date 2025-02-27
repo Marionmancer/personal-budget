@@ -21,4 +21,18 @@
 <amount>12</amount>
 <item>Soczek</item>
 </operation>
+<operation>
+<id>4</id>
+<userId>4</userId>
+<date>2025-02-27</date>
+<amount>19</amount>
+<item>Testowy wydatek</item>
+</operation>
+<operation>
+<id>5</id>
+<userId>1</userId>
+<date>2025-02-27</date>
+<amount>1638.33</amount>
+<item>Samochod</item>
+</operation>
 </operations>
