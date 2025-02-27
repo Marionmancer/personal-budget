@@ -11,7 +11,7 @@ char UtilityMethods::getChar() {
             singleSign = input[0];
             break;
         }
-        cout << "To nie jest pojedynczy znak. Wpisz ponownie." << endl;
+        cout << "That's not single sign. Try again." << endl;
     }
     return singleSign;
 }

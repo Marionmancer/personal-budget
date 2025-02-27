@@ -71,9 +71,7 @@ bool DateMethods::validateDate(string date) {
     smatch match;
 
     if (regex_match(date, match, datePattern)) {
-        int year = stoi(match[1]);  // Rok
-        int month = stoi(match[2]); // Miesi¹c
-        int day = stoi(match[3]);   // Dzieñ
+        int day = stoi(match[3]);
 
         return day <= checkHowManyDaysMonthHas(convertStringToTmStruct(date));
     }

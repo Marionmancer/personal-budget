@@ -12,6 +12,7 @@ class Menus{
 public:
     static char chooseLoginMenuOption();
     static char chooseBalanceMenuOption();
+    static void showTitle(string title);
 };
 
 #endif

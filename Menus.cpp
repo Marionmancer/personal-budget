@@ -36,3 +36,9 @@ char Menus::chooseBalanceMenuOption() {
 
     return choice;
 }
+
+void Menus::showTitle(string title) {
+
+    cout << title << endl;
+
+}

@@ -24,11 +24,11 @@ void PersonalBudgetApp::userLogout(){
 }
 
 void PersonalBudgetApp::addIncome(){
-
+    balanceManager->addIncome();
 }
 
 void PersonalBudgetApp::addExpense(){
-
+    balanceManager->addExpense();
 }
 
 void PersonalBudgetApp::displayCurrenthMonthBalance(){
