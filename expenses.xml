@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operations>
+<operation>
+<id>1</id>
+<userId>5</userId>
+<date>2025-02-27</date>
+<amount>33</amount>
+<item>Ryba</item>
+</operation>
+<operation>
+<id>2</id>
+<userId>5</userId>
+<date>2025-02-26</date>
+<amount>200</amount>
+<item>Zakupy na caly tydzien</item>
+</operation>
+<operation>
+<id>3</id>
+<userId>6</userId>
+<date>2025-02-27</date>
+<amount>12</amount>
+<item>Soczek</item>
+</operation>
+</operations>

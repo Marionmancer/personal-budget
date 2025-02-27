@@ -16,7 +16,7 @@ public:
     UsersFile(string usersFileName)
             :XmlFile(usersFileName){};
 
-    void addUserToFile(User user);
+    bool addUserToFile(User &user);
     bool changeUserPasswordInFile(User user);
     vector <User> loadUsersFromFile();
 

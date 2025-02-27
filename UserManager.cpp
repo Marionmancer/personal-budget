@@ -42,10 +42,10 @@ void UserManager::userRegistration() {
     User user = inputNewUserData();
 
     users.push_back(user);
-    usersFile.addUserToFile(user);
-
-    cout << endl << "Konto zalozono pomyslnie" << endl << endl;
-    system("pause");
+    if(usersFile.addUserToFile(user)){
+        cout << endl << "Konto zalozono pomyslnie" << endl << endl;
+        system("pause");
+    }
 }
 
 void UserManager::loggedInUserPasswordChange() {
