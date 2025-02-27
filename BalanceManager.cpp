@@ -46,8 +46,19 @@ Operation BalanceManager::addOperationDetails(const OperationType &operationType
         }
     } while ((userChoice!='y') && (userChoice!='n'));
 
-    cout << endl << "Enter " << operationDescription << " amount." << endl;
-    operation.amount = stof(UtilityMethods::readLine()); //Tutaj zastosowac pozniej funkcje validateAmount (CashMethods)
+    bool amountValidationResult = false;
+    do{
+        cout << endl << "Enter " << operationDescription << " amount." << endl;
+        string tempAmount = UtilityMethods::readLine();
+        amountValidationResult = CashMethods::validateAmount(tempAmount);
+
+        if (amountValidationResult){
+            operation.amount = stof(tempAmount);
+        } else {
+            cout << endl << "Wrong amount entered. Try again." << endl;
+        }
+
+    } while (!amountValidationResult);
 
     cout << endl << "Enter short " << operationDescription << " description." << endl;
     operation.item = UtilityMethods::readLine();

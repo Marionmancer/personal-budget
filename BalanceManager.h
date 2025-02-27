@@ -2,11 +2,13 @@
 #define BALANCEMANAGER_H
 
 #include <iostream>
+#include <iomanip>
 
 #include "Operation.h"
 #include "OperationType.h"
 #include "OperationsFile.h"
 #include "DateMethods.h"
+#include "CashMethods.h"
 #include "Menus.h"
 
 using namespace std;
