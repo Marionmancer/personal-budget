@@ -1,7 +1,8 @@
 #include "UsersFile.h"
 
-void UsersFile::addUserToFile(User user){
+bool UsersFile::addUserToFile(User &user){
 
+    bool status = false;
     CMarkup xmlDoc;
     string userXmlFileName = getFileName();
 
@@ -15,17 +16,20 @@ void UsersFile::addUserToFile(User user){
     lastId = getLastId() + 1;
 
     xmlDoc.ResetPos();
-    xmlDoc.FindElem("users");
-    xmlDoc.IntoElem();
-    xmlDoc.AddElem("user");
-    xmlDoc.AddChildElem("id", lastId);
-    xmlDoc.AddChildElem("login", user.login);
-    xmlDoc.AddChildElem("password", user.password);
-    xmlDoc.AddChildElem("name", user.name);
-    xmlDoc.AddChildElem("surname", user.surname);
-    xmlDoc.ResetPos();
+    if(xmlDoc.FindElem("users")){
+        xmlDoc.IntoElem();
+        xmlDoc.AddElem("user");
+        xmlDoc.AddChildElem("id", lastId);
+        xmlDoc.AddChildElem("login", user.login);
+        xmlDoc.AddChildElem("password", user.password);
+        xmlDoc.AddChildElem("name", user.name);
+        xmlDoc.AddChildElem("surname", user.surname);
+        xmlDoc.ResetPos();
 
-    xmlDoc.Save(userXmlFileName);
+        xmlDoc.Save(userXmlFileName);
+        status = true;
+    }
+    return status;
 }
 
 bool UsersFile::changeUserPasswordInFile(User user){

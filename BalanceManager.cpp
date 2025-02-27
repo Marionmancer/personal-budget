@@ -10,11 +10,11 @@ Operation BalanceManager::addOperationDetails(const OperationType &operationType
 
     switch (operationType){
         case INCOME:
-            operation.id = 1; //TYMCZASOWE
+            operation.id = incomesFile.getLastId()+1;
             operationDescription = "income";
             break;
         case EXPENSE:
-            operation.id = 1; //TYMCZASOWE
+            operation.id = expensesFile.getLastId()+1;
             operationDescription = "expense";
             break;
     }
@@ -63,22 +63,15 @@ Operation BalanceManager::addOperationDetails(const OperationType &operationType
     cout << endl << "Enter short " << operationDescription << " description." << endl;
     operation.item = UtilityMethods::readLine();
 
-    //Do usuniecia
-    cout << operation.id << endl;
-    cout << operation.userId << endl;
-    cout << operation.date << endl;
-    cout << operation.amount << endl;
-    cout << operation.item << endl;
-    system("pause");
-    //
-
     return operation;
 }
 
 void BalanceManager::addIncome(){
-    addOperationDetails(INCOME);
+    if(incomesFile.addNewOperationToFile(addOperationDetails(INCOME)))
+        cout << "Income successfully added to library" << endl;
 }
 
 void BalanceManager::addExpense(){
-    addOperationDetails(EXPENSE);
+    if(expensesFile.addNewOperationToFile(addOperationDetails(EXPENSE)))
+        cout << "Expense successfully added to library" << endl;
 }

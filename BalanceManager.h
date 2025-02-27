@@ -24,8 +24,11 @@ class BalanceManager{
 
 public:
     BalanceManager(int loggedInUserId, string incomesFileName, string expensesFileName)
-                :LOGGED_IN_USER_ID(loggedInUserId){
+                :LOGGED_IN_USER_ID(loggedInUserId), incomesFile(incomesFileName),
+                expensesFile(expensesFileName){
 
+        incomes = incomesFile.loadOperationsOfLoggedInUserFromFile(LOGGED_IN_USER_ID);
+        expenses = expensesFile.loadOperationsOfLoggedInUserFromFile(LOGGED_IN_USER_ID);
     }
 
     void addIncome();
