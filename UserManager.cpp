@@ -6,18 +6,18 @@ void UserManager::loginUser() {
     bool isLoggedIn = false;
     bool isLoginExisting = false;
 
-    cout << "Podaj login: ";
+    cout << "Provide login: ";
     login = UtilityMethods::readLine();
 
     for (size_t i = 0; i < users.size(); i++) {
         if (users[i].login == login) {
             isLoginExisting = true;
             for (int attemptsLeft = 3; attemptsLeft > 0; attemptsLeft--) {
-                cout << "Podaj haslo. Pozostalo prob: " << attemptsLeft << ": ";
+                cout << "Provide password. Attempts left: " << attemptsLeft << ": ";
                 password = UtilityMethods::readLine();
 
                 if (users[i].password == password) {
-                    cout << endl << "Zalogowales sie." << endl << endl;
+                    cout << endl << "You have logged in!" << endl << endl;
                     system("pause");
                     loggedInUserId = users[i].id;
                     isLoggedIn = true;
@@ -27,11 +27,11 @@ void UserManager::loginUser() {
         }
     }
     if (isLoggedIn == false && isLoginExisting == true) {
-        cout << "Wprowadzono 3 razy bledne haslo." << endl;
+        cout << "An incorrect password was entered 3 times." << endl;
         system("pause");
         loggedInUserId = 0;
     } else if (isLoginExisting == false) {
-        cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+        cout << "There is no user with this login." << endl << endl;
         system("pause");
         loggedInUserId = 0;
     }
@@ -43,21 +43,21 @@ void UserManager::userRegistration() {
 
     users.push_back(user);
     if(usersFile.addUserToFile(user)){
-        cout << endl << "Konto zalozono pomyslnie" << endl << endl;
+        cout << endl << "The account was created successfully!" << endl << endl;
         system("pause");
     }
 }
 
 void UserManager::loggedInUserPasswordChange() {
     string newPassword = "";
-    cout << "Podaj nowe haslo: ";
+    cout << "Provide new password: ";
     newPassword = UtilityMethods::readLine();
 
     for (size_t i = 0; i < users.size(); i++) {
         if (users[i].id == loggedInUserId) {
             users[i].password = newPassword;
             if (usersFile.changeUserPasswordInFile(users[i])){
-                cout << "Haslo zostalo zmienione." << endl << endl;
+                cout << "Password has been changed." << endl << endl;
                 system("pause");
             }
         }
@@ -72,23 +72,23 @@ User UserManager::inputNewUserData() {
 
     string login;
     do {
-        cout << "Podaj login: ";
+        cout << "Provide login: ";
         cin >> login;
         user.login = login;
     } while (isLoginAlreadyTaken(user.login) == true);
 
     string password;
-    cout << "Podaj haslo: ";
+    cout << "Provide password: ";
     cin >> password;
     user.password = password;
 
     string name;
-    cout << "Podaj imie: ";
+    cout << "Provide name: ";
     cin >> name;
     user.name = name;
 
     string surname;
-    cout << "Podaj nazwisko: ";
+    cout << "Provide surname: ";
     cin >> surname;
     user.surname = surname;
 
@@ -105,7 +105,7 @@ int UserManager::getNewUserId() {
 bool UserManager::isLoginAlreadyTaken(string login) {
     for (size_t i = 0; i < users.size(); i++) {
         if (users[i].login == login) {
-            cout << endl << "Istnieje uzytkownik o takim loginie." << endl;
+            cout << endl << "There is a user with this login." << endl;
             return true;
         }
     }

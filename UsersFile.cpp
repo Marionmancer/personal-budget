@@ -11,7 +11,7 @@ bool UsersFile::addUserToFile(User &user){
     if (!fileExists){
         xmlDoc.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xmlDoc.AddElem("users");
-        cout << "Nie ma takiego pliku. Utworzylem wiec nowy " << endl;
+        cout << "The user file does not exist yet. A new file has been created." << endl;
     }
     lastId = getLastId() + 1;
 
