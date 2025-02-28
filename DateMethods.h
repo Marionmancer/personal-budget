@@ -8,6 +8,8 @@
 #include <vector>
 #include <regex>
 
+#include "Operation.h"
+
 using namespace std;
 
 class DateMethods{
