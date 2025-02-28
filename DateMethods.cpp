@@ -18,6 +18,16 @@ struct tm DateMethods::convertStringToTmStruct(string strinHoldingFormatedDate) 
     return dataAsStructure;
 }
 
+time_t DateMethods::convertStringToTime_t(string strinHoldingFormatedDate) {
+
+    struct tm stringConvertedToStructTm;
+
+    stringConvertedToStructTm = convertStringToTmStruct(strinHoldingFormatedDate);
+
+    return mktime(&stringConvertedToStructTm);
+}
+
+
 string DateMethods::convertTmStructDateToStringDate (struct tm dateToConvert) {
 
     string year, month, day;
@@ -72,7 +82,6 @@ bool DateMethods::validateDate(string date) {
 
     if (regex_match(date, match, datePattern)) {
         int day = stoi(match[3]);
-
         return day <= checkHowManyDaysMonthHas(convertStringToTmStruct(date));
     }
     return false;

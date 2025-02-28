@@ -86,7 +86,10 @@ bool BalanceManager::sortDataAscendingByDate(const Operation& operationA, const 
     return mktime(&dateAStruct) < mktime(&dateBStruct);
 }
 
-void BalanceManager::showBalance(){
+void BalanceManager::showBalance(string startDate, string endDate){
+
+    float incomesSum = calculateOperationTypeBalance(startDate, endDate, INCOME);
+    float expensesSum = calculateOperationTypeBalance(startDate, endDate, EXPENSE);
 
     cout << fixed << setprecision(2);
 
@@ -94,18 +97,26 @@ void BalanceManager::showBalance(){
     cout << ">>>INCOMES<<<" << endl;
     cout << "Date\t\t" << "Amount\t\t" << "Item\t\t" << endl;
     for (size_t i = 0; i < incomes.size(); i++){
-        cout << incomes[i].date << "\t" <<incomes[i].amount << "\t\t" << incomes[i].item << endl;
+        if ((DateMethods::convertStringToTime_t(incomes[i].date) >=
+             DateMethods::convertStringToTime_t(startDate)) &&
+            (DateMethods::convertStringToTime_t(incomes[i].date) <=
+             DateMethods::convertStringToTime_t(endDate))){
+            cout << incomes[i].date << "\t" <<incomes[i].amount << "\t\t" << incomes[i].item << endl;
+        }
     }
 
     sort(expenses.begin(), expenses.end(), sortDataAscendingByDate);
     cout << endl << ">>>EXPENSES<<<" << endl;
     cout << "Date\t\t" << "Amount\t\t" << "Item\t\t" << endl;
     for (size_t i = 0; i < expenses.size(); i++){
-        cout << expenses[i].date << "\t" << expenses[i].amount << "\t\t" << expenses[i].item << endl;
+        if ((DateMethods::convertStringToTime_t(expenses[i].date) >=
+             DateMethods::convertStringToTime_t(startDate)) &&
+            (DateMethods::convertStringToTime_t(expenses[i].date) <=
+             DateMethods::convertStringToTime_t(endDate))){
+            cout << expenses[i].date << "\t" << expenses[i].amount << "\t\t" << expenses[i].item << endl;
+        }
     }
 
-    float incomesSum = calculateOperationTypeBalance(INCOME);
-    float expensesSum = calculateOperationTypeBalance(EXPENSE);
     cout << endl << ">>>BALANCE SUMMARY<<<" << endl;
     cout << "Incomes: \t\t" << incomesSum << endl;
     cout << "Expenses: \t\t" << expensesSum << endl;
@@ -118,20 +129,78 @@ void BalanceManager::showBalance(){
     system("pause");
 }
 
-float BalanceManager::calculateOperationTypeBalance (/*string startDate, string endDate, */const OperationType &operationType){
+float BalanceManager::calculateOperationTypeBalance (string startDate, string endDate, const OperationType &operationType){
     float operationSum = 0;
 
     switch (operationType){
         case INCOME:
             for (size_t i = 0; i < incomes.size(); i++){
-                operationSum += incomes[i].amount;
+                if ((DateMethods::convertStringToTime_t(incomes[i].date) >=
+                     DateMethods::convertStringToTime_t(startDate)) &&
+                    (DateMethods::convertStringToTime_t(incomes[i].date) <=
+                     DateMethods::convertStringToTime_t(endDate))){
+                    operationSum += incomes[i].amount;
+                }
             }
         break;
         case EXPENSE:
             for (size_t i = 0; i < expenses.size(); i++){
-                operationSum += expenses[i].amount;
+                if ((DateMethods::convertStringToTime_t(incomes[i].date) >=
+                     DateMethods::convertStringToTime_t(startDate)) &&
+                    (DateMethods::convertStringToTime_t(incomes[i].date) <=
+                     DateMethods::convertStringToTime_t(endDate))){
+                    operationSum += expenses[i].amount;
+                }
             }
         break;
     }
     return operationSum;
 }
+
+void BalanceManager::displayCurrentMonthBalance(){
+    showBalance(DateMethods::convertTmStructDateToStringDate(DateMethods::getCurrentsMonthFirstDayDate()),
+                DateMethods::convertTmStructDateToStringDate(DateMethods::getCurrentDate()));
+}
+
+void BalanceManager::displayPreviousMonthBalance(){
+    showBalance(DateMethods::convertTmStructDateToStringDate(DateMethods::getPreviousMonthFirstDayDate()),
+                DateMethods::convertTmStructDateToStringDate(DateMethods::getPreviousMonthLastDayDate()));
+}
+
+void BalanceManager::displaySelectedPeriodBalance(){
+    string startDate;
+    string endDate;
+    bool areInputtedDatesCorrect = false;
+    bool isStartDateCorrect = false;
+    bool isEndDateCorrect = false;
+
+    do{
+        cout << "Please input start date" << endl;
+        do{
+            startDate = UtilityMethods::readLine();
+            if (!DateMethods::validateDate(startDate))
+                cout << "Incorrect date. Try again" << endl;
+            else
+                isStartDateCorrect = true;
+
+        } while(!isStartDateCorrect);
+
+        cout << "Please input end date" << endl;
+        do{
+            endDate = UtilityMethods::readLine();
+            if (!DateMethods::validateDate(endDate))
+                cout << "Incorrect date. Try again" << endl;
+            else
+                isEndDateCorrect = true;
+        } while(!isEndDateCorrect);
+
+        if (DateMethods::convertStringToTime_t(startDate) < DateMethods::convertStringToTime_t(endDate)){
+            areInputtedDatesCorrect = true;
+            cout << "Incorrect data entered." << endl << "Start date is later than end date. Try again" << endl;
+        }
+    } while (!areInputtedDatesCorrect);
+
+    showBalance(startDate, endDate);
+
+}
+

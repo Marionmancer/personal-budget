@@ -22,6 +22,7 @@ public:
     static bool validateDate(string date);
     static string convertTmStructDateToStringDate (struct tm dateToConvert);
     static struct tm convertStringToTmStruct(string strinHoldingFormatedDate);
+    static time_t convertStringToTime_t(string strinHoldingFormatedDate);
     static struct tm getCurrentDate();
     static struct tm getCurrentsMonthFirstDayDate();
     static struct tm getPreviousMonthLastDayDate();

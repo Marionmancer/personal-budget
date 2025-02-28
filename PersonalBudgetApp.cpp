@@ -32,15 +32,15 @@ void PersonalBudgetApp::addExpense(){
 }
 
 void PersonalBudgetApp::displayCurrenthMonthBalance(){
-    balanceManager->showBalance(); //Do zmiany
+    balanceManager->displayCurrentMonthBalance();
 }
 
 void PersonalBudgetApp::displayPreviousMonthBalance(){
-
+    balanceManager->displayPreviousMonthBalance();
 }
 
 void PersonalBudgetApp::displaySelectedPeriodBalanace(){
-
+    balanceManager->displaySelectedPeriodBalance();
 }
 
 bool PersonalBudgetApp::isUserLoggedIn(){
