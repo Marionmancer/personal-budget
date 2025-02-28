@@ -22,6 +22,7 @@ class BalanceManager{
 
     Operation addOperationDetails(const OperationType &operationType);
     static bool sortDataAscendingByDate(const Operation& operationA, const Operation& operationB);
+    float calculateOperationTypeBalance (/*string startDate, string endDate, */const OperationType &operationType);
 
 public:
     BalanceManager(int loggedInUserId, string incomesFileName, string expensesFileName)
