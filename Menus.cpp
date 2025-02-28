@@ -4,13 +4,13 @@ char Menus::chooseLoginMenuOption() {
     char choice;
 
     system("cls");
-    cout << "    >>> MENU  GLOWNE <<<" << endl;
+    cout << "    >>> MAIN  MENU <<<" << endl;
     cout << "---------------------------" << endl;
-    cout << "1. Rejestracja" << endl;
-    cout << "2. Logowanie" << endl;
-    cout << "9. Koniec programu" << endl;
+    cout << "1. Registration" << endl;
+    cout << "2. Sign in" << endl;
+    cout << "9. Close the program" << endl;
     cout << "---------------------------" << endl;
-    cout << "Twoj wybor: ";
+    cout << "Your choice: ";
     choice = UtilityMethods::getChar();
 
     return choice;
@@ -20,18 +20,18 @@ char Menus::chooseBalanceMenuOption() {
     char choice;
 
     system("cls");
-    cout << " >>> MENU ZARZADZANIA BUDZETEM <<<" << endl;
+    cout << " >>> BUDGET MANAGEMENT MENU <<<" << endl;
     cout << "---------------------------" << endl;
-    cout << "1. Dodaj przychod" << endl;
-    cout << "2. Dodaj wydatek" << endl;
-    cout << "3. Bilans z biezacego miesiaca" << endl;
-    cout << "4. Bilans z poprzedniego miesiaca" << endl;
-    cout << "5. Bilans z wybranego okresu" << endl;
+    cout << "1. Add income" << endl;
+    cout << "2. Add expense" << endl;
+    cout << "3. Balance of current month" << endl;
+    cout << "4. Balance of previous month" << endl;
+    cout << "5. Balance of custom period" << endl;
     cout << "---------------------------" << endl;
-    cout << "6. Zmien haslo" << endl;
-    cout << "7. Wyloguj sie" << endl;
+    cout << "6. Change password" << endl;
+    cout << "7. Log out" << endl;
     cout << "---------------------------" << endl;
-    cout << "Twoj wybor: ";
+    cout << "Your choice: ";
     choice = UtilityMethods::getChar();
 
     return choice;
@@ -39,6 +39,7 @@ char Menus::chooseBalanceMenuOption() {
 
 void Menus::showTitle(string title) {
 
+    system("cls");
     cout << title << endl;
 
 }

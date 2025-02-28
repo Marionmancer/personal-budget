@@ -5,9 +5,6 @@ Operation BalanceManager::addOperationDetails(const OperationType &operationType
     Operation operation;
     string operationDescription;
 
-    system("cls");
-    Menus::showTitle("ADD OPERATION DETAILS \n");
-
     switch (operationType){
         case INCOME:
             operation.id = incomesFile.getLastId()+1;
@@ -175,7 +172,7 @@ void BalanceManager::displaySelectedPeriodBalance(){
     bool isEndDateCorrect = false;
 
     do{
-        cout << "Please input start date" << endl;
+        cout << "Please input start date. REMEMBER: Minimum date is 2000-01-01." << endl;
         do{
             startDate = UtilityMethods::readLine();
             if (!DateMethods::validateDate(startDate))
@@ -185,7 +182,7 @@ void BalanceManager::displaySelectedPeriodBalance(){
 
         } while(!isStartDateCorrect);
 
-        cout << "Please input end date" << endl;
+        cout << "Please input end date. REMEMBER: Maximum date is today's date." << endl;
         do{
             endDate = UtilityMethods::readLine();
             if (!DateMethods::validateDate(endDate))
@@ -194,12 +191,13 @@ void BalanceManager::displaySelectedPeriodBalance(){
                 isEndDateCorrect = true;
         } while(!isEndDateCorrect);
 
-        if (DateMethods::convertStringToTime_t(startDate) < DateMethods::convertStringToTime_t(endDate)){
+        if (DateMethods::convertStringToTime_t(startDate) <= DateMethods::convertStringToTime_t(endDate)){
             areInputtedDatesCorrect = true;
+        } else
             cout << "Incorrect data entered." << endl << "Start date is later than end date. Try again" << endl;
-        }
-    } while (!areInputtedDatesCorrect);
 
+    } while (!areInputtedDatesCorrect);
+    Menus::showTitle(">>>CUSTOM MONTH BALANCE<<<\n");
     showBalance(startDate, endDate);
 
 }

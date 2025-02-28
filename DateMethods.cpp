@@ -81,6 +81,12 @@ bool DateMethods::validateDate(string date) {
     smatch match;
 
     if (regex_match(date, match, datePattern)) {
+        //Tutaj dodaje kod
+        struct tm todaysDate = getCurrentDate();
+        if (convertStringToTime_t(date) > convertStringToTime_t(convertTmStructDateToStringDate(todaysDate))){
+            return false;
+        }
+        //
         int day = stoi(match[3]);
         return day <= checkHowManyDaysMonthHas(convertStringToTmStruct(date));
     }
