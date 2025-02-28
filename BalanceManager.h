@@ -2,6 +2,7 @@
 #define BALANCEMANAGER_H
 
 #include <iostream>
+#include <algorithm>
 
 #include "Operation.h"
 #include "OperationType.h"
@@ -20,6 +21,7 @@ class BalanceManager{
     vector <Operation> expenses;
 
     Operation addOperationDetails(const OperationType &operationType);
+    static bool sortDataAscendingByDate(const Operation& operationA, const Operation& operationB);
 
 public:
     BalanceManager(int loggedInUserId, string incomesFileName, string expensesFileName)
@@ -32,6 +34,7 @@ public:
 
     void addIncome();
     void addExpense();
+    void showBalance(); //tymczasowo publiczny
 
 };
 

@@ -75,3 +75,49 @@ void BalanceManager::addExpense(){
     if(expensesFile.addNewOperationToFile(addOperationDetails(EXPENSE)))
         cout << "Expense successfully added to library" << endl;
 }
+
+bool BalanceManager::sortDataAscendingByDate(const Operation& operationA, const Operation& operationB){
+    struct tm dateAStruct;
+    struct tm dateBStruct;
+
+    dateAStruct = DateMethods::convertStringToTmStruct(operationA.date);
+    dateBStruct = DateMethods::convertStringToTmStruct(operationB.date);
+
+    return mktime(&dateAStruct) < mktime(&dateBStruct);
+}
+
+void BalanceManager::showBalance(){
+    float incomesSum = 0;
+    float expensesSum = 0;
+    float balance = 0;
+
+    cout << fixed << setprecision(2);
+    cout << ">>>INCOMES<<<" << endl;
+    cout << "Date\t\t" << "Amount\t\t" << "Item\t\t" << endl;
+
+    sort(incomes.begin(), incomes.end(), sortDataAscendingByDate);
+    for (size_t i = 0; i < incomes.size(); i++){
+        cout << incomes[i].date << "\t" <<incomes[i].amount << "\t\t" << incomes[i].item << endl;
+        incomesSum += incomes[i].amount;
+    }
+
+    sort(expenses.begin(), expenses.end(), sortDataAscendingByDate);
+    cout << endl << ">>>EXPENSES<<<" << endl;
+    cout << "Date\t\t" << "Amount\t\t" << "Item\t\t" << endl;
+    for (size_t i = 0; i < expenses.size(); i++){
+        cout << expenses[i].date << "\t" << expenses[i].amount << "\t\t" << expenses[i].item << endl;
+        expensesSum += expenses[i].amount;
+    }
+
+    balance = incomesSum - expensesSum;
+
+    cout << endl << ">>>BALANCE SUMMARY<<<" << endl;
+    cout << "Incomes: \t\t" << incomesSum <<endl;
+    cout << "Expenses: \t\t" << expensesSum << endl;
+    if (balance < 0)
+        cout << "Total debt: \t\t" << balance << endl;
+    else
+        cout << "Total savings: \t\t" << balance << endl;
+    system("pause");
+}
+

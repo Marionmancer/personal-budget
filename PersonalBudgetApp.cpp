@@ -32,7 +32,7 @@ void PersonalBudgetApp::addExpense(){
 }
 
 void PersonalBudgetApp::displayCurrenthMonthBalance(){
-
+    balanceManager->showBalance();
 }
 
 void PersonalBudgetApp::displayPreviousMonthBalance(){
